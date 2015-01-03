@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan
+@ComponentScan("org.pingus")
 public class Application {
 
 

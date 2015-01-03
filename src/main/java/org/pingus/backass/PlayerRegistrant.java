@@ -3,11 +3,15 @@ package org.pingus.backass;
 import org.pingus.model.Room;
 import org.pingus.backass.repository.RoomRepository;
 import org.pingus.model.GameStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PlayerRegistrant {
 
     private final RoomRepository roomRepository;
 
+    @Autowired
     public PlayerRegistrant(RoomRepository roomRepository) {
         this.roomRepository = roomRepository;
     }

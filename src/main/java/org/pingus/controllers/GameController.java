@@ -9,6 +9,7 @@ import org.pingus.model.GameStatus;
 import org.pingus.model.Player;
 import org.pingus.model.Room;
 import org.pingus.model.RoomInformation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,15 +17,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GameController {
 
-	private RoomRepository roomRepository = new RoomRepository();
-	private PlayerRegistrant playerRegistrant = new PlayerRegistrant(
-			roomRepository);
+	private final RoomRepository roomRepository;
+	private final PlayerRegistrant playerRegistrant;
+
+	@Autowired
+	public GameController(RoomRepository roomRepository, PlayerRegistrant playerRegistrant) {
+		this.roomRepository = roomRepository;
+		this.playerRegistrant = playerRegistrant;
+	}
 
 	@RequestMapping("/")
 	public String index() {
 		return "Bienvenido a mi increible juego!";
 	}
-
 	@RequestMapping("/cartas")
 	public String cartas() {
 		return "Dame cartas!";
