@@ -40,7 +40,7 @@ public class Room {
 			arrayOfPositions[Constants.VICEASS] = registeredPlayers.size() - 2;
 			arrayOfPositions[Constants.VICEPRESIDENT] = 1;
 			arrayOfPositions[Constants.PRESIDENT] = 0;
-			this.roomGame = new AssGame((Player[]) registeredPlayers.toArray(),
+			this.roomGame = new AssGame(registeredPlayers.toArray(new Player[registeredPlayers.size()]),
 					arrayOfPositions);
 		}
 
