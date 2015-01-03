@@ -10,7 +10,7 @@ public class Room {
 	private final String roomId;
 	private final int capacity;
 	private final ArrayList<Player> registeredPlayers;
-	private AssGame roomGame;
+	private AssGame roomGame = null;
 
 	public Room(String roomId, int capacity) {
 		this.roomId = roomId;

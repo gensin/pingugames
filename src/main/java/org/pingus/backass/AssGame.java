@@ -78,9 +78,10 @@ public class AssGame {
 		return players;
 	}
 
-	public Player playCard(Card playedCard, int playerID) {
+	public Player playCard(int cardId, int playerID) {
 		int playerPosition = getPlayerPositionByID(playerID);
 		Player player = players[playerPosition];
+		Card playedCard = deck.getCardById(cardId);
 		// Card playedCard = deck.getCardByID(cardID);
 		// Wrong card
 		if (deck.getCardById(playedCard.getCardId()) == null) {
