@@ -1,6 +1,5 @@
 package org.pingus.model;
 
-import org.pingus.utils.Constants;
 
 /**
  * 
@@ -13,7 +12,7 @@ public class Card {
 	private int cardId;
 	private int cardNumber;
 	private int playedNumber;
-	private int isJoker;
+	private boolean isJoker;
 	private String cardClub;
 	private String cardKind;
 
@@ -23,11 +22,11 @@ public class Card {
 		this.playedNumber = cardNumber;
 		this.cardClub = cardClub;
 		this.cardKind = cardKind;
-		this.isJoker = Constants.NO_JOKER;
+		this.isJoker = false;
 	}
 
 	public Card(int cardId, int cardNumber, String cardClub, String cardKind,
-			int isJoker) {
+			boolean isJoker) {
 		this.cardId = cardId;
 		this.cardNumber = cardNumber;
 		this.playedNumber = cardNumber;
@@ -37,8 +36,8 @@ public class Card {
 	}
 
 	public int addValuesJoker(int cardNumber, String cardClub, String cardKind) {
-		if (this.isJoker == Constants.NO_JOKER) {
-			this.isJoker = Constants.JOKER;
+		if (this.isJoker == false) {
+			this.isJoker = true;
 		}
 		this.playedNumber = cardNumber;
 		this.cardClub = cardClub;
@@ -54,7 +53,7 @@ public class Card {
 		return cardNumber;
 	}
 
-	public int getIsJoker() {
+	public boolean getIsJoker() {
 		return isJoker;
 	}
 
