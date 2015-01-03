@@ -1,6 +1,5 @@
 package org.pingus.model;
 
-
 /**
  * 
  * @author Álvaro

@@ -1,10 +1,10 @@
 package org.pingus.backass;
 
+import java.util.Arrays;
+
 import org.pingus.model.Card;
 import org.pingus.model.Deck;
 import org.pingus.model.Player;
-
-import java.util.Arrays;
 
 /**
  * Created by gabi on 1/3/15.
@@ -18,7 +18,7 @@ public class AssGame {
 	private int currentPlayer = 0;
 	private Card lastCardPlayed = null;
 	private final int PLAYER_NOT_FOUND = -1;
-    private boolean[] remainingPlayers;
+	private boolean[] remainingPlayers;
 
 	public AssGame(final Player[] players, final Deck deck) {
 		this.players = players;
@@ -28,14 +28,16 @@ public class AssGame {
 				* numberOfPlayers;
 		for (int i = 0; i < numberOfPlayers; i++) {
 			if (residueClass > 0) {
-				players[i].receiveCards(deck.dealCards(deckSize/ numberOfPlayers + 1));
+				players[i].receiveCards(deck.dealCards(deckSize
+						/ numberOfPlayers + 1));
 				residueClass = residueClass - 1;
 			} else {
-				players[i].receiveCards(deck.dealCards(deckSize/ numberOfPlayers));
+				players[i].receiveCards(deck.dealCards(deckSize
+						/ numberOfPlayers));
 			}
 		}
-        remainingPlayers=new boolean[numberOfPlayers];
-        Arrays.fill(remainingPlayers, true);
+		remainingPlayers = new boolean[numberOfPlayers];
+		Arrays.fill(remainingPlayers, true);
 
 	}
 
@@ -77,15 +79,15 @@ public class AssGame {
 		}
 		player.playedCard(playedCard);
 		if (player.getHand().size() == 0) {
-            remainingPlayers[playerPosition]=false;
-            if(numberOfRemainingPlayers()==1){
-			gameFinished();
-            }
+			remainingPlayers[playerPosition] = false;
+			if (numberOfRemainingPlayers() == 1) {
+				gameFinished();
+			}
 		}
 		if (playedCard.getPlayedNumber() == lastCardPlayed.getPlayedNumber()) {
-			currentPlayer=nextPlayer(2);
-        } else {
-			currentPlayer=nextPlayer(1);
+			currentPlayer = nextPlayer(2);
+		} else {
+			currentPlayer = nextPlayer(1);
 		}
 		lastCardPlayed = playedCard;
 		return player;
@@ -120,25 +122,27 @@ public class AssGame {
 			return firstCardNumber >= secondCardNumber;
 		}
 	}
-    private int numberOfRemainingPlayers(){
-        int numberOfRemainingPlayers=0;
-        for(int i = 0; i<numberOfPlayers; i++){
-            if(remainingPlayers[i] == true){
-                numberOfRemainingPlayers+=1;
 
-            }
-        }
-        return numberOfRemainingPlayers;
-    }
-    private int nextPlayer(int numberOfSteps){
-        int auxiliaryPlayer=currentPlayer;
-        while(numberOfSteps>0){
-            auxiliaryPlayer= (auxiliaryPlayer+1)/numberOfPlayers;
-            if(remainingPlayers[auxiliaryPlayer]){
-                numberOfSteps=-1;
-            }
+	private int numberOfRemainingPlayers() {
+		int numberOfRemainingPlayers = 0;
+		for (int i = 0; i < numberOfPlayers; i++) {
+			if (remainingPlayers[i] == true) {
+				numberOfRemainingPlayers += 1;
 
-        }
-        return auxiliaryPlayer;
-    }
+			}
+		}
+		return numberOfRemainingPlayers;
+	}
+
+	private int nextPlayer(int numberOfSteps) {
+		int auxiliaryPlayer = currentPlayer;
+		while (numberOfSteps > 0) {
+			auxiliaryPlayer = (auxiliaryPlayer + 1) / numberOfPlayers;
+			if (remainingPlayers[auxiliaryPlayer]) {
+				numberOfSteps = -1;
+			}
+
+		}
+		return auxiliaryPlayer;
+	}
 }
