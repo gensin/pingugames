@@ -17,38 +17,78 @@ public class Player {
 	// METHODS
 
 	public void receiveCards(ArrayList<Card> hand) {
-		this.hand = hand;
+		this.hand.addAll(hand);
 	}
 
 	public void receiveCard(Card card) {
 		this.hand.add(card);
 	}
 
-	public void playedCard(Card playedCard) {
+	public void playedCard(int playedCardID) {
 
-		if (this.hand.contains(playedCard) == true) {
-
-			this.hand.remove(playedCard);
-		}
-	}
-
-	public void playedCards(ArrayList<Card> playedCards) {
-
-		while (!playedCards.isEmpty() & !this.hand.isEmpty()) {
-
-			Card playedCard = playedCards.get(1);
-
-			if (this.hand.contains(playedCard) == true) {
-
-				this.hand.remove(playedCard);
-				playedCards.remove(playedCard);
+		for(int i = 0; i< this.hand.size(); i++){
+			if (this.hand.get(i).getCardId() == playedCardID) {
+				
+				this.hand.remove(i);
+				
 			}
 		}
 	}
 
+	public void playedCards(ArrayList<Integer> playedCardsID) {
+
+		for (int i = 0; i<playedCardsID.size(); i++){
+			int j = 0;
+			
+			while (!this.hand.isEmpty() & j < this.hand.size()) {
+				
+				if (this.hand.get(j).getCardId() == playedCardsID.get(i)) {
+					this.hand.remove(j);
+				}
+				j++;
+			}
+		}
+	}
+
+	public boolean hasCard(int cardID) {
+
+		for (int i = 0;i<this.hand.size();i++){
+			
+			int IDAux = this.hand.get(i).getCardId();
+			
+			if (IDAux == cardID){
+				return true;
+			}	
+		}
+		return false;
+	}
+	
+	public boolean hasCards(ArrayList<Integer> cardIDs) {
+
+		boolean hasCards = true;
+		
+		for(int j = 0;(j < cardIDs.size()) & (hasCards == true);j++){
+			for(int i = 0;(i < this.hand.size()) & (hasCards == true);i++)
+			{	
+				if(cardIDs.get(j) != this.hand.get(i).getCardId()){
+					hasCards = false;
+				}
+			}
+		}
+		return hasCards;
+	}
+	
 	public boolean hasCard(Card card) {
 
-		return this.hand.contains(card);
+		for (int i = 0;i<this.hand.size();i++){
+			
+			int IDAux = this.hand.get(i).getCardId();
+			
+			if (IDAux == card.getCardId()){
+				return true;
+			}	
+		}
+		return false;
 	}
 
 	// GETS
@@ -65,22 +105,4 @@ public class Player {
 		return hand;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		System.out.println("comparando");
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		Player player = (Player) o;
-
-		System.out.println("devolviendo " + (ID != player.ID));
-		if (ID != player.ID) return false;
-
-		return true;
-	}
-
-	@Override
-	public int hashCode() {
-		return ID;
-	}
 }
