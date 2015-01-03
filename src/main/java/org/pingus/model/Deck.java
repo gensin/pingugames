@@ -89,7 +89,7 @@ public class Deck {
 		Card card = null;
 		try {
 			card = this.originalDeck.get(idCard);
-		} catch (IndexOutOfBoundsException e) {
+		} catch (Exception e) {
 			card = null;
 		}
 		return card;
