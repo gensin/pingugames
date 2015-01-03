@@ -144,9 +144,9 @@ public class Deck {
 
 	public Card getCardById(int cardId) {
 		Card card;
-		try {
-			card = this.originalDeck.get(cardId);
-		} catch (Exception e) {
+		if ((cardId-1)>0 && (cardId-1)<this.originalDeck.size()) {
+			card = this.originalDeck.get(cardId-1);
+		} else {
 			card = null;
 		}
 		return card;
