@@ -8,7 +8,7 @@ import org.pingus.utils.Constants;
 
 /**
  * 
- * @author Álvaro
+ * @author Alvaro
  *
  */
 
@@ -139,16 +139,11 @@ public class Deck {
 	}
 
 	public int getTotalDeckSize() {
-		int len = 0;
-		if (this.typeDeck == Constants.SPA_TYPE
-				|| this.typeDeck == Constants.SPA_TYPE_JOKERS) {
-			len = Constants.SPA_DECKLENGTH;
-		}
-		return len;
+		return this.originalDeck.size();
 	}
 
 	public Card getCardById(int cardId) {
-		Card card = null;
+		Card card;
 		try {
 			card = this.originalDeck.get(cardId);
 		} catch (Exception e) {

@@ -2,7 +2,7 @@ package org.pingus.model;
 
 /**
  * 
- * @author �lvaro
+ * @author Alvaro
  *
  */
 
@@ -35,13 +35,15 @@ public class Card {
 	}
 
 	public int addValuesJoker(int cardNumber, String cardClub, String cardKind) {
-		if (this.isJoker == false) {
-			this.isJoker = true;
+		if (this.isJoker == true) {
+			this.playedNumber = cardNumber;
+			this.cardClub = cardClub;
+			this.cardKind = cardKind;
+			return this.cardId;
+		} else {
+			return -1;
 		}
-		this.playedNumber = cardNumber;
-		this.cardClub = cardClub;
-		this.cardKind = cardKind;
-		return this.cardId;
+		
 	}
 
 	public int getCardId() {
@@ -66,6 +68,10 @@ public class Card {
 
 	public int getPlayedNumber() {
 		return playedNumber;
+	}
+
+	public void setJoker(boolean isJoker) {
+		this.isJoker = isJoker;
 	}
 
 }
