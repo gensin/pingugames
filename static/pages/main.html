@@ -18,45 +18,39 @@
 			<a class="btn-lg" href="#/register">Register</a>
 		</div>
 		
+		<div class="col-lg-12" ng-controller="baseController">
+			<div ng-app ng-controller="obtenerSalas">
+			   <div ng-repeat-start="(id, sala) in datos">
+			    ==== {{sala.roomId}} ====
+				</div>
+				<div>
+				    <span>Sentados: {{sala.registeredPlayers}} </span>
+				    <span>Total: {{sala.capacity}}</span>
+				</div>
+				<button ng-click="entrarEnSala()" value="{{sala.roomId}}">Entrar</button>
+				<div ng-repeat-end>						
+				    ======================
+				</div>
+			</div>									
+		</div>
+		
 		<div class="row">
 			<div class="col-lg-12 cuerpo">
 				<div class="row">
 					<div class="col-lg-12 marcoJuego">
 						<div class="row superiorJuego">
 							<div class="col-lg-12">
-								<span>Jugadores:</span> <span> J1 - 3 cartas | J2 - 4 cartas | J3 - 4 cartas</span>
+								
 							</div>
 						</div>
 						<div class="row cuerpoJuego">
 							<div class="col-lg-12">
-								<div class="row">
-									<div class="col-lg-12">
-										<span>Carta Jugada: J1</span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-12">
-										<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaJugada" />
-									</div>
-								</div>
+
 							</div>
 						</div>
 						<div class="row pieJuego">
 							<div class="col-lg-12">
-								<div class="row">
-									<div class="col-lg-12">
-										<span>Tus cartas:</span>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-lg-12">
-										<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" onmouseover="myFunction2()" class="cartaPropia" />
-										<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
-										<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
-										<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
-										<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</div>

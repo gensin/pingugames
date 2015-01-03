@@ -37,6 +37,8 @@ public class GameController {
 	public GameStatus joinGame(
 			@RequestBody String playerId,
 			@RequestBody String roomId) {
+		
+		System.out.println("hello " + playerId + " asd " + roomId);
 
 		return playerRegistrant.registerPlayerToRoom(playerId, roomId);
 	}
