@@ -26,9 +26,15 @@ public class AssGame {
     private boolean vicepresidentToViceass = false;
 
 
-    public AssGame(final Player[] players, final Deck deck, final int[] arrayOfPositions ) {
+    public AssGame(final Player[] players) {
         this.players = players;
         this.numberOfPlayers=players.length;
+        int[] arrayOfPositions = new int[4];
+        arrayOfPositions[Constants.ASS]=players.length-1;
+        arrayOfPositions[Constants.VICEASS]=players.length;
+        arrayOfPositions[Constants.VICEPRESIDENT]=1;
+        arrayOfPositions[Constants.PRESIDENT]=0;
+        
         if (arrayOfPositions.length!=4){
             throw(new Error());
         }
@@ -43,7 +49,7 @@ public class AssGame {
 
         this.arrayOfPositions = arrayOfPositions;
         currentPlayer=arrayOfPositions[Constants.ASS];
-        this.deck = deck;
+        this.deck = new Deck(Constants.SPA_TYPE);
         final int deckSize = deck.getDeckSize();
         int residueClass = deckSize - (deckSize / numberOfPlayers)
                 * numberOfPlayers;
