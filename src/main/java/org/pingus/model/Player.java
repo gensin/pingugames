@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Player {
 
-	  private String nombre;
+	  private String name;
 	  private int ID;
 	  private ArrayList<Card> hand;
 	  private ArrayList<Card> handAux;
@@ -13,8 +13,8 @@ public class Player {
 
 
 
-	public Player(String nombre, int ID){
-		  this.nombre = nombre;
+	public Player(String name, int ID){
+		  this.name = name;
 		  this.ID = ID;
 		  this.hand = new ArrayList<Card>();
 	  }
@@ -39,16 +39,14 @@ public class Player {
 	
 	public void playedCards (ArrayList<Card> playedCards){
 		
-		ArrayList<Card> playedCards2 = (ArrayList<Card>) playedCards.clone();
-		
 		while (!playedCards.isEmpty() & !this.hand.isEmpty()){
 			
-			Card playedCard = playedCards2.get(1);
+			Card playedCard = playedCards.get(1);
 			
 			if (this.hand.contains(playedCard) == true){
 				
 				this.hand.remove(playedCard);
-				playedCards2.remove(playedCard);
+				playedCards.remove(playedCard);
 			}
 			
 		}
@@ -63,8 +61,8 @@ public class Player {
 	
 	//GETS
 	
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
 	public int getID() {
