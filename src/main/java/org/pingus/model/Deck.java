@@ -17,6 +17,7 @@ public class Deck {
 		if (typeDeck == Constants.SPA_TYPE) {
 			deck = this.createSpanishDeck();
 		}
+		this.shuffle();
 	}
 
 	private ArrayList<Card> createSpanishDeck() {
