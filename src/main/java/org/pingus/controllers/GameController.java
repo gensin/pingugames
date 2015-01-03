@@ -12,4 +12,9 @@ public class GameController {
     public String index() {
         return "Bienvenido a mi increible juego!";
     }
+
+    @RequestMapping("/cartas")
+    public String cartas() {
+        return "Dame cartas!";
+    }
 }
