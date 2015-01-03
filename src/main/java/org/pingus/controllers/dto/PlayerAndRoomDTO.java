@@ -2,8 +2,11 @@ package org.pingus.controllers.dto;
 
 public class PlayerAndRoomDTO {
 
-    private final String playerId;
-    private final String roomId;
+    private String playerId;
+    private String roomId;
+
+    public PlayerAndRoomDTO() {
+    }
 
     public PlayerAndRoomDTO(String playerId, String roomId) {
         this.playerId = playerId;
@@ -16,5 +19,21 @@ public class PlayerAndRoomDTO {
 
     public String getRoomId() {
         return roomId;
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
+    }
+
+    public void setRoomId(String roomId) {
+        this.roomId = roomId;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerAndRoomDTO{" +
+                "playerId='" + playerId + '\'' +
+                ", roomId='" + roomId + '\'' +
+                '}';
     }
 }

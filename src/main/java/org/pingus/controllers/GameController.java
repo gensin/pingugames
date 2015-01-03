@@ -39,7 +39,9 @@ public class GameController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public GameStatus joinGame(@RequestBody PlayerAndRoomDTO playerAndRoomDTO) {
+	public GameStatus joinGame(@RequestBody String playerAndRoomBody) throws IOException {
+		PlayerAndRoomDTO playerAndRoomDTO = objectMapper.readValue(playerAndRoomBody, PlayerAndRoomDTO.class);
+
 		return playerRegistrant.registerPlayerToRoom(playerAndRoomDTO.getPlayerId(), playerAndRoomDTO.getRoomId());
 	}
 
