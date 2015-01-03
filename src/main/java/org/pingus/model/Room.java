@@ -1,4 +1,4 @@
-package org.pingus.backass.model;
+package org.pingus.model;
 
 
 import java.util.HashSet;
@@ -38,5 +38,9 @@ public class Room {
 
     public boolean isFull() {
         return capacity == registeredPlayers.size();
+    }
+
+    public boolean hasPlayer(String playerId) {
+        return registeredPlayers.contains(playerId);
     }
 }

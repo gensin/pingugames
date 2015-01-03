@@ -1,6 +1,6 @@
 package org.pingus.backass.repository;
 
-import org.pingus.backass.model.Room;
+import org.pingus.model.Room;
 
 import java.util.HashMap;
 import java.util.Map;

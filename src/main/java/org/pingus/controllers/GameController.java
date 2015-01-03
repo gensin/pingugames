@@ -28,8 +28,6 @@ public class GameController {
     public GameStatus joinGame(@RequestParam(value="playerId") String playerId,
                                @RequestParam(value="roomId") String roomId) {
 
-        System.out.println("hello");
-
         return playerRegistrant.registerPlayerToRoom(playerId, roomId);
     }
 }

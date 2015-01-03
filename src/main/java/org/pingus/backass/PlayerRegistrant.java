@@ -1,6 +1,6 @@
 package org.pingus.backass;
 
-import org.pingus.backass.model.Room;
+import org.pingus.model.Room;
 import org.pingus.backass.repository.RoomRepository;
 import org.pingus.model.GameStatus;
 
@@ -16,9 +16,16 @@ public class PlayerRegistrant {
 
         //TODO safeguard room repo against nulls
         Room room = roomRepository.getRoom(roomId);
-        room.registerPlayer(playerId);
 
-        if (room.isFull()) {
+        if (room.hasPlayer(playerId)) {
+            return GameStatus.YA_TE_HAS_APUNTAO_BACALAO;
+        }
+        boolean registeredPlayer = room.registerPlayer(playerId);
+
+        if (!registeredPlayer) {
+            return GameStatus.A_TU_PUTA_CASA;
+        }
+        else if (room.isFull()) {
             //TODO NOTIFY OTHER PLAYERS
             return GameStatus.READY_TO_PLAY;
         } else {
