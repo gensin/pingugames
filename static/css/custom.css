@@ -1,4 +1,6 @@
-/* CUSTOM CLASS CLIENTE VIEW */
+/* CUSTOM CLASS */
+
+/* COMUNES */
 
 /* CABECERA INDEX */
 .cabecera{
@@ -27,6 +29,53 @@
 	font-family:"Times New Roman", Times, serif;
 	color:#FFFFFF;
 	font-size:20px;
+}
+
+.marcoJuego{
+	width: 80%;
+	height:500px;
+	margin: 100px 100px 100px 100px;
+	background-color:white;
+}
+
+.superiorJuego{
+	width: 95%;
+	margin-left:20px;
+	margin-top: 15px;
+	background-color:#999999;
+	color:#000000;
+}
+
+.cuerpoJuego{
+	width: 95%;
+	height: 220px;
+	margin-left:20px;
+	margin-top: 15px;
+	background-color:#999999;
+	color:#000000;
+}
+
+.cartaJugada{
+	height: 180px;
+	width: 110px;
+}
+
+.cartaPropia{
+	height: 150px;
+	width: 85px;
+}
+
+.cartaPropiaSeleccionada{
+	border: solid 1px black;
+}
+
+.pieJuego{
+	width: 95%;
+	height: 180px;
+	margin-left:20px;
+	margin-top: 15px;
+	background-color:#999999;
+	color:#000000;
 }
 
 /*  PIE INDEX */

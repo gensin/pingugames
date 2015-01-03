@@ -24,14 +24,53 @@
 		
 			<div class="row">
 				<div class="col-lg-12 cuerpo">						
-					<button class="btn-lg" onclick="myFunction()"></button>
-					<div id="cargaDatos">Aqui cargo los datos...</div>
+					<div class="row">
+						<div class="col-lg-12 marcoJuego">
+							<div class="row superiorJuego">
+								<div class="col-lg-12">
+									<span>Jugadores:</span> <span> J1 - 3 cartas | J2 - 4 cartas | J3 - 4 cartas</span>
+								</div>
+							</div>							
+							<div class="row cuerpoJuego">
+								<div class="col-lg-12">
+									<div class="row">
+										<div class="col-lg-12">
+											<span>Carta Jugada: J1</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaJugada" />
+										</div>
+									</div>							
+								</div>
+							</div>							
+							<div class="row pieJuego">
+								<div class="col-lg-12">
+									<div class="row">
+										<div class="col-lg-12">
+											<span>Tus cartas:</span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" onmouseover="myFunction2()" class="cartaPropia" />
+											<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
+											<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
+											<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
+											<img src="http://www.magiclibrarities.net/rarities/poker-carta-mundi-ace-of-spades.jpg" class="cartaPropia" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 				
 			<div class="row">
 				<div class="col-lg-12 pie">
-				
+					<span>PIE DE PAGINA</span>
 				</div>
 			</div>			
 		</div>
@@ -44,6 +83,10 @@
 
 <script>
 
+function myFunction2() {
+	$('.cartaPropia').removeClass('cartaPropia');
+	$('.cartaPropia').addClass('cartaPropiaSeleccionada');
+}
 
 function myFunction() {
 
