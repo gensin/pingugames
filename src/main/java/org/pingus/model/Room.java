@@ -1,6 +1,5 @@
 package org.pingus.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +10,7 @@ public class Room {
 
 	private final String roomId;
 	private final int capacity;
-	private final Set<Player> registeredPlayers;
+	private final Set<String> registeredPlayers;
 	private AssGame roomGame = null;
 
 	public Room(String roomId, int capacity) {
@@ -31,8 +30,7 @@ public class Room {
 			return false;
 		}
 
-		// TODO Recuperar nombres de la base de datos
-		registeredPlayers.add(new Player("name", Integer.parseInt(playerId)));
+		registeredPlayers.add(playerId);
 
 		if (registeredPlayers.size() == capacity) {
 			int[] arrayOfPositions = new int[4];
@@ -40,8 +38,15 @@ public class Room {
 			arrayOfPositions[Constants.VICEASS] = registeredPlayers.size() - 2;
 			arrayOfPositions[Constants.VICEPRESIDENT] = 1;
 			arrayOfPositions[Constants.PRESIDENT] = 0;
-			this.roomGame = new AssGame(registeredPlayers.toArray(new Player[registeredPlayers.size()]),
-					arrayOfPositions);
+			Player[] players = new Player[registeredPlayers.size()];
+
+			int index = 0;
+			for (String registeredPlayer : registeredPlayers) {
+				// TODO Recuperar nombres de la base de datos
+				players[index++] = new Player("name", Integer.parseInt(registeredPlayer));
+			}
+
+			this.roomGame = new AssGame(players, arrayOfPositions);
 		}
 
 		return true;
