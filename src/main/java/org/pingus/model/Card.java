@@ -2,7 +2,7 @@ package org.pingus.model;
 
 /**
  * 
- * @author Álvaro
+ * @author ï¿½lvaro
  *
  */
 
