@@ -2,6 +2,12 @@ package org.pingus.model;
 
 import org.pingus.utils.Constants;
 
+/**
+ * 
+ * @author Álvaro
+ *
+ */
+
 public class Card {
 
 	private int cardId;

@@ -6,6 +6,12 @@ import java.util.Random;
 
 import org.pingus.utils.Constants;
 
+/**
+ * 
+ * @author Álvaro
+ *
+ */
+
 public class Deck {
 
 	private int numPlayers;
