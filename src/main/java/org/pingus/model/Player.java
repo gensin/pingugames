@@ -9,10 +9,6 @@ public class Player {
 	  private int ID;
 	  private ArrayList<Card> hand;
 	  private ArrayList<Card> handAux;
-	  
-
-
-
 
 	public Player(String name, int ID){
 		  this.name = name;
@@ -49,14 +45,12 @@ public class Player {
 				this.hand.remove(playedCard);
 				playedCards.remove(playedCard);
 			}
-			
 		}
 	}
 	
 	public boolean hasCard(Card card){
 		
 		return this.hand.contains(card);
-		
 	}
 	
 	
@@ -77,10 +71,6 @@ public class Player {
 	public ArrayList<Card> getHandAux() {
 		return handAux;
 	}
-
-
-	
-
 
 }
 
