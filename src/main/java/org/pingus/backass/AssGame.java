@@ -1,5 +1,6 @@
 package org.pingus.backass;
 
+import org.pingus.model.Card;
 import org.pingus.model.Deck;
 import org.pingus.model.Player;
 
@@ -17,7 +18,7 @@ public class AssGame {
     public AssGame(final Player[] players, final Deck deck){
         this.players = players;
         this.deck = deck;
-        final int deckSize = deck.getRemainingDeckSize();
+        final int deckSize = deck.getDeckSize();
         int residueClass = deckSize-(deckSize/numberOfPlayers)*numberOfPlayers;
         for (int i = 0; i<numberOfPlayers; i++){
             if(residueClass>0){
