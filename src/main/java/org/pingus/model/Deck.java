@@ -9,14 +9,14 @@ import org.pingus.utils.Constants;
 public class Deck {
 
 	private int numPlayers;
-	private int typeDeck;
+	private int deckType;
 	private ArrayList<Card> deck;
 	private ArrayList<Card> originalDeck;
 
 	public Deck(int typeDeck) {
-		this.typeDeck = typeDeck;
-		if (this.typeDeck == Constants.SPA_TYPE
-				|| this.typeDeck == Constants.SPA_TYPE_JOKERS) {
+		this.deckType = typeDeck;
+		if (this.deckType == Constants.SPA_TYPE
+				|| this.deckType == Constants.SPA_TYPE_JOKERS) {
 			this.deck = this.createSpanishDeck(typeDeck);
 			this.originalDeck = this.createSpanishDeck(typeDeck);
 		}
@@ -27,36 +27,33 @@ public class Deck {
 		ArrayList<Card> cards = new ArrayList<Card>();
 		String[] clubs = { Constants.SPA_CLUBS, Constants.SPA_SWORDS,
 				Constants.SPA_CUPS, Constants.SPA_GOLDS };
-		int clubLength = Constants.SPA_CLUBLENGTH;
-		if (jokers == Constants.SPA_TYPE_JOKERS) {
-			clubLength = clubLength + 2;
-		}
 		for (int i = 0; i < clubs.length; i++) {
-			for (int j = 0; j < clubLength; j++) {
-				String kindCard = "";
+			for (int j = 0; j < Constants.SPA_TYPE_JOKERS; j++) {
+				String cardKind = "";
 				switch (j) {
 				case 0:
-					kindCard = Constants.SPA_ACE;
+					cardKind = Constants.SPA_ACE;
 					break;
 				case 9:
-					kindCard = Constants.SPA_JACK;
+					cardKind = Constants.SPA_JACK;
 					break;
 				case 10:
-					kindCard = Constants.SPA_KNIGHT;
+					cardKind = Constants.SPA_KNIGHT;
 					break;
 				case 11:
-					kindCard = Constants.SPA_KING;
+					cardKind = Constants.SPA_KING;
 					break;
 				case 12:
-					kindCard = Constants.SPA_JOKER;
-					break;
-				case 13:
-					kindCard = Constants.SPA_JOKER;
-					break;
 				}
 				cards.add(((i + 1) * (j + 1)) - 1, new Card(
-						((i + 1) * (j + 1)), j + 1, clubs[i], kindCard));
+						((i + 1) * (j + 1)), j + 1, clubs[i], cardKind));
 			}
+		}
+		if (jokers == Constants.SPA_TYPE_JOKERS) {
+			cards.add(cards.size(), new Card(cards.size() + 1, -1, "",
+					Constants.SPA_JOKER, Constants.JOKER));
+			cards.add(cards.size(), new Card(cards.size() + 1, -1, "",
+					Constants.SPA_JOKER, Constants.JOKER));
 		}
 		return cards;
 	}
@@ -66,9 +63,9 @@ public class Deck {
 		Collections.shuffle(this.deck, new Random(seed));
 	}
 
-	public ArrayList<Card> getDeal(int numCards) {
+	public ArrayList<Card> dealCards(int numberOfCards) {
 		ArrayList<Card> hand = new ArrayList<Card>();
-		for (int i = 0; i < numCards; i++) {
+		for (int i = 0; i < numberOfCards; i++) {
 			hand.add(this.deck.get(i));
 			this.deck.remove(i);
 		}
@@ -81,8 +78,8 @@ public class Deck {
 
 	public int getTotalDeckSize() {
 		int len = 0;
-		if (this.typeDeck == Constants.SPA_TYPE
-				|| this.typeDeck == Constants.SPA_TYPE_JOKERS) {
+		if (this.deckType == Constants.SPA_TYPE
+				|| this.deckType == Constants.SPA_TYPE_JOKERS) {
 			len = Constants.SPA_DECKLENGTH;
 		}
 		return len;
@@ -111,7 +108,7 @@ public class Deck {
 	}
 
 	public int getTypeDeck() {
-		return typeDeck;
+		return deckType;
 	}
 
 	public ArrayList<Card> getOriginalDeck() {

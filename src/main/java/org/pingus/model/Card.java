@@ -1,33 +1,59 @@
 package org.pingus.model;
 
+import org.pingus.utils.Constants;
+
 public class Card {
 
-	private Integer idCard;
-	private Integer numCard;
-	private String clubCard;
-	private String kindCard;
+	private int cardId;
+	private int cardNumber;
+	private int isJoker;
+	private String cardClub;
+	private String cardKind;
 	
-	public Card(Integer idCard,Integer numCard,String clubCard,String kindCard){
-		this.idCard=idCard;
-		this.numCard=numCard;
-		this.clubCard=clubCard;
-		this.kindCard=kindCard;
+	public Card(int cardId,int cardNumber,String cardClub,String cardKind){
+		this.cardId=cardId;
+		this.cardNumber=cardNumber;
+		this.cardClub=cardClub;
+		this.cardKind=cardKind;
+		this.isJoker=Constants.NO_JOKER;
+	}
+	
+	public Card(int cardId,int cardNumber,String cardClub,String cardKind, int isJoker){
+		this.cardId=cardId;
+		this.cardNumber=cardNumber;
+		this.cardClub=cardClub;
+		this.cardKind=cardKind;
+		this.isJoker=isJoker;
+	}
+	
+	public int addValuesJoker (int cardNumber, String cardClub, String cardKind){
+		if(this.isJoker==Constants.NO_JOKER){
+			this.isJoker=Constants.JOKER;
+		}
+			this.cardNumber=cardNumber;
+			this.cardClub=cardClub;
+			this.cardKind=cardKind;
+			return this.cardId;
 	}
 
-	public Integer getIdCard() {
-		return idCard;
+	public int getCardId() {
+		return cardId;
 	}
 
-	public Integer getNumCard() {
-		return numCard;
+	public int getCardNumber() {
+		return cardNumber;
 	}
 
-	public String getClubCard() {
-		return clubCard;
+	public int getIsJoker() {
+		return isJoker;
 	}
 
-	public String getKindCard() {
-		return kindCard;
+	public String getCardClub() {
+		return cardClub;
+	}
+
+	public String getCardKind() {
+		return cardKind;
 	}
 	
 }
