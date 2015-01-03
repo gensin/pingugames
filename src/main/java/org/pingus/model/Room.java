@@ -37,7 +37,7 @@ public class Room {
 		if (registeredPlayers.size() == capacity) {
 			int[] arrayOfPositions = new int[4];
 			arrayOfPositions[Constants.ASS] = registeredPlayers.size() - 1;
-			arrayOfPositions[Constants.VICEASS] = registeredPlayers.size();
+			arrayOfPositions[Constants.VICEASS] = registeredPlayers.size() - 2;
 			arrayOfPositions[Constants.VICEPRESIDENT] = 1;
 			arrayOfPositions[Constants.PRESIDENT] = 0;
 			this.roomGame = new AssGame((Player[]) registeredPlayers.toArray(),
