@@ -128,8 +128,7 @@ public class Deck {
 	public ArrayList<Card> dealCards(int numberOfCards) {
 		ArrayList<Card> hand = new ArrayList<Card>();
 		for (int i = 0; i < numberOfCards; i++) {
-			hand.add(this.deck.get(i));
-			this.deck.remove(i);
+			hand.add(this.deck.remove(deck.size()-1));
 		}
 		return hand;
 	}

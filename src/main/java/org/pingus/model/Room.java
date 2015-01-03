@@ -43,7 +43,7 @@ public class Room {
 			int index = 0;
 			for (String registeredPlayer : registeredPlayers) {
 				// TODO Recuperar nombres de la base de datos
-				players[index++] = new Player("name", Integer.parseInt(registeredPlayer));
+				players[index++] = new Player("name", registeredPlayer);
 			}
 
 			this.roomGame = new AssGame(players, arrayOfPositions);

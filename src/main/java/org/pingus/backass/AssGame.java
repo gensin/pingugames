@@ -64,10 +64,10 @@ public class AssGame {
 
 	}
 
-	private int getPlayerPositionByID(int ID) {
+	private int getPlayerPositionByID(String id) {
 		int playerPosition = PLAYER_NOT_FOUND;
 		for (int i = 0; i < numberOfPlayers; i++) {
-			if (players[i].getID() == ID) {
+			if (players[i].getId().equals(id)) {
 				playerPosition = i;
 				break;
 			}
@@ -80,8 +80,8 @@ public class AssGame {
 	}
 
     //TODO add when card is a joker
-	public Player playCard(int cardId, int playerID) {
-		int playerPosition = getPlayerPositionByID(playerID);
+	public Player playCard(int cardId, String playerId) {
+		int playerPosition = getPlayerPositionByID(playerId);
 
 		//Card playedCard = deck.getCardById(cardId);
 		// Card playedCard = deck.getCardByID(cardID);
@@ -125,8 +125,8 @@ public class AssGame {
 
 	}
 
-    public Player playCards(int[] cardIds, int playerID){
-        int playerPosition = getPlayerPositionByID(playerID);
+    public Player playCards(int[] cardIds, String playerId){
+        int playerPosition = getPlayerPositionByID(playerId);
 
         //Card playedCard = deck.getCardById(cardId);
         // Card playedCard = deck.getCardByID(cardID);
@@ -178,8 +178,8 @@ public class AssGame {
 
     }
     //TODO modify return to mean that the player starts again
-    public boolean pass(int playerID){
-        int playerPosition = getPlayerPositionByID(playerID);
+    public boolean pass(String playerId){
+        int playerPosition = getPlayerPositionByID(playerId);
         Player player = players[playerPosition];
         currentPlayer = nextPlayer(1);
         if (currentPlayer == lastPlayer){

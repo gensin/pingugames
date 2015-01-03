@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Player {
 
 	private String name;
-	private int ID;
+	private String id;
 	private ArrayList<Card> hand;
 
-	public Player(String name, int ID) {
+	public Player(String name, String id) {
 		this.name = name;
-		this.ID = ID;
+		this.id = id;
 		this.hand = new ArrayList<Card>();
 	}
 
@@ -109,8 +109,8 @@ public class Player {
 		return name;
 	}
 
-	public int getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
 
 	public ArrayList<Card> getHand() {
