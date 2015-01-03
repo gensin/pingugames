@@ -1,3 +1,4 @@
+
 package org.pingus.model;
 
 import java.util.ArrayList;
@@ -82,3 +83,4 @@ public class Player {
 
 
 }
+
