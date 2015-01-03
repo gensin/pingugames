@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/custom.css" media="screen" />
+<script type="text/javascript" src="../js/angular.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+
+<body>
+
+	<div class="row">
+		<div class="col-lg-2"></div>
+		
+		<div class="col-lg-8">		
+			<div class="row">
+				<div class="col-lg-12 cabecera">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-6 titulo"><img src="../resources/pinguino.png" class="imagenCabecera"/> <span>PingüGames</span></div>
+					<div class="col-lg-4"></div>
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="col-lg-12 cuerpo">						
+					<button class="btn-lg" onclick="myFunction()"></button>
+					<div id="cargaDatos">Aqui cargo los datos...</div>
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="col-lg-12 pie">
+				
+				</div>
+			</div>			
+		</div>
+		
+		<div class="col-lg-2"></div>
+	</div>
+
+</body>
+</html>
+
+<script>
+
+
+function myFunction() {
+
+	$http.post('localhost:8080', {msg:''}).
+	success(function(data, status, headers, config) {
+		alert(data);
+	}).
+	error(function(data, status, headers, config) {
+		alert("Error");
+	});
+	
+}
+
+</script>
