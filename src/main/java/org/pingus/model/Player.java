@@ -8,7 +8,6 @@ public class Player {
 	  private String name;
 	  private int ID;
 	  private ArrayList<Card> hand;
-	  private ArrayList<Card> handAux;
 
 	public Player(String name, int ID){
 		  this.name = name;
@@ -66,10 +65,6 @@ public class Player {
 	
 	public ArrayList<Card> getHand() {
 		return hand;
-	}
-
-	public ArrayList<Card> getHandAux() {
-		return handAux;
 	}
 
 }
