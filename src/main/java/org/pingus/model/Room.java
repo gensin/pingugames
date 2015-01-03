@@ -77,7 +77,7 @@ public class Room {
 		return roomId;
 	}
 
-	public Set<Player> getRegisteredPlayers() {
+	public Set<String> getRegisteredPlayers() {
 		return registeredPlayers;
 	}
 
