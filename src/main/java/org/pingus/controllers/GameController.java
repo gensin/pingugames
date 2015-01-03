@@ -1,10 +1,14 @@
 package org.pingus.controllers;
 
+import java.io.IOException;
 import java.util.Collection;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pingus.backass.AssGame;
 import org.pingus.backass.PlayerRegistrant;
 import org.pingus.backass.repository.RoomRepository;
+import org.pingus.controllers.dto.PlayerAndRoomDTO;
 import org.pingus.model.GameStatus;
 import org.pingus.model.Player;
 import org.pingus.model.Room;
@@ -17,6 +21,7 @@ public class GameController {
 
 	private final RoomRepository roomRepository;
 	private final PlayerRegistrant playerRegistrant;
+	private final ObjectMapper objectMapper = new ObjectMapper();
 
 	@Autowired
 	public GameController(RoomRepository roomRepository, PlayerRegistrant playerRegistrant) {
@@ -34,13 +39,8 @@ public class GameController {
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public GameStatus joinGame(
-			@RequestBody String playerId,
-			@RequestBody String roomId) {
-		
-		System.out.println("hello " + playerId + " asd " + roomId);
-
-		return playerRegistrant.registerPlayerToRoom(playerId, roomId);
+	public GameStatus joinGame(@RequestBody PlayerAndRoomDTO playerAndRoomDTO) {
+		return playerRegistrant.registerPlayerToRoom(playerAndRoomDTO.getPlayerId(), playerAndRoomDTO.getRoomId());
 	}
 
 	@RequestMapping("/playCardAss")
