@@ -34,21 +34,33 @@ public class Player {
 			}
 		}
 	}
+    public void playedCard(Card card) {
 
-	public void playedCards(ArrayList<Integer> playedCardsID) {
+        for(int i = 0; i< this.hand.size(); i++){
+            if (this.hand.get(i).getCardId() == card.getCardId()) {
 
-		for (int i = 0; i<playedCardsID.size(); i++){
+                this.hand.remove(i);
+
+            }
+        }
+    }
+
+
+    public void playedCards(int[] playedCardsID) {
+
+		for (int i = 0; i<playedCardsID.length; i++){
 			int j = 0;
 			
 			while (!this.hand.isEmpty() & j < this.hand.size()) {
 				
-				if (this.hand.get(j).getCardId() == playedCardsID.get(i)) {
+				if (this.hand.get(j).getCardId() == playedCardsID[i]) {
 					this.hand.remove(j);
 				}
 				j++;
 			}
 		}
 	}
+
 
 	public boolean hasCard(int cardID) {
 
@@ -63,14 +75,14 @@ public class Player {
 		return false;
 	}
 	
-	public boolean hasCards(ArrayList<Integer> cardIDs) {
+	public boolean hasCards(int[] cardIDs) {
 
 		boolean hasCards = true;
 		
-		for(int j = 0;(j < cardIDs.size()) & (hasCards == true);j++){
+		for(int j = 0;(j < cardIDs.length) & (hasCards == true);j++){
 			for(int i = 0;(i < this.hand.size()) & (hasCards == true);i++)
 			{	
-				if(cardIDs.get(j) != this.hand.get(i).getCardId()){
+				if(cardIDs[j] != this.hand.get(i).getCardId()){
 					hasCards = false;
 				}
 			}

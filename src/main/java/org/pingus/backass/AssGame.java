@@ -155,7 +155,7 @@ public class AssGame {
         if (!correctPlay(playedCards)) {
             return null;
         }
-        player.playedCard(cardIds);
+        player.playedCards(cardIds);
         if (player.getHand().size() == 0) {
             remainingPlayers[playerPosition] = false;
             if (numberOfRemainingPlayers() == 1) {
