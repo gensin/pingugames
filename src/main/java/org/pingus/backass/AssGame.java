@@ -78,6 +78,7 @@ public class AssGame {
 		return players;
 	}
 
+    //TODO add when card is a joker
 	public Player playCard(int cardId, int playerID) {
 		int playerPosition = getPlayerPositionByID(playerID);
 		Player player = players[playerPosition];
@@ -116,6 +117,14 @@ public class AssGame {
 		return player;
 
 	}
+    public Player pass(int playerID){
+        int playerPosition = getPlayerPositionByID(playerID);
+        Player player = players[playerPosition];
+        currentPlayer = nextPlayer(1);
+        return player;
+
+
+    }
 
 	private void gameFinished() {
 
@@ -187,6 +196,37 @@ public class AssGame {
 		president.receiveCard(bestCardAss);
 		president.receiveCard(secondBestCardAss);
 	}
+    public void presidentToAss(Card firstCard, Card secondCard){
+        if(presidentToAss){
+            throw new Error();
+        }
+        Player president = players[arrayOfPositions[Constants.PRESIDENT]];
+        Player ass = players[arrayOfPositions[Constants.ASS]];
+        if(!president.hasCard(firstCard) || !president.hasCard(secondCard))
+        {
+            throw new Error();
+        }
+        president.playedCard(firstCard);
+        president.playedCard(secondCard);
+        ass.receiveCard(firstCard);
+        ass.receiveCard(secondCard);
+        presidentToAss=true;
+    }
+    public void vicepresidentToViceass(Card card){
+        if(vicepresidentToViceass){
+            throw new Error();
+        }
+        Player vicepresident = players[arrayOfPositions[Constants.VICEPRESIDENT]];
+        Player viceass = players[arrayOfPositions[Constants.VICEASS]];
+        if(!vicepresident.hasCard(card)){
+            throw new Error();
+        }
+        vicepresident.playedCard(card);
+        viceass.receiveCard(card);
+        vicepresidentToViceass=true;
+
+    }
+
 
 	private Card bestCard(Player player) {
 		ArrayList<Card> hand = player.getHand();
@@ -223,39 +263,5 @@ public class AssGame {
 
 	}
 
-	public int getNumberOfPlayers() {
-		return numberOfPlayers;
-	}
 
-	public Deck getDeck() {
-		return deck;
-	}
-
-	public int getCurrentPlayer() {
-		return currentPlayer;
-	}
-
-	public Card getLastCardPlayed() {
-		return lastCardPlayed;
-	}
-
-	public int getPLAYER_NOT_FOUND() {
-		return PLAYER_NOT_FOUND;
-	}
-
-	public boolean[] getRemainingPlayers() {
-		return remainingPlayers;
-	}
-
-	public int[] getArrayOfPositions() {
-		return arrayOfPositions;
-	}
-
-	public boolean isPresidentToAss() {
-		return presidentToAss;
-	}
-
-	public boolean isVicepresidentToViceass() {
-		return vicepresidentToViceass;
-	}
 }
