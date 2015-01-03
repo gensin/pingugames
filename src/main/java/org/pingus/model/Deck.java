@@ -11,11 +11,13 @@ public class Deck {
 	private Integer numPlayers;
 	private Integer typeDeck;
 	private ArrayList<Card> deck;
+	private ArrayList<Card> originalDeck;
 
 	public Deck(Integer typeDeck) {
-		this.typeDeck=typeDeck;
+		this.typeDeck = typeDeck;
 		if (typeDeck == Constants.SPA_TYPE) {
-			deck = this.createSpanishDeck();
+			this.deck = this.createSpanishDeck();
+			this.originalDeck = this.createSpanishDeck();
 		}
 		this.shuffle();
 	}
@@ -41,37 +43,47 @@ public class Deck {
 					kindCard = Constants.SPA_KING;
 					break;
 				}
-				cards.add(((i + 1) * (j + 1)) - 1, new Card(((i + 1) * (j + 1)),
-						j + 1, clubs[i], kindCard));
+				cards.add(((i + 1) * (j + 1)) - 1, new Card(
+						((i + 1) * (j + 1)), j + 1, clubs[i], kindCard));
 			}
 		}
 		return cards;
 	}
-	
+
 	public void shuffle() {
 		long seed = System.nanoTime();
 		Collections.shuffle(this.deck, new Random(seed));
-    }
-	
-	public ArrayList<Card> getDeal (Integer numCards){
+	}
+
+	public ArrayList<Card> getDeal(Integer numCards) {
 		ArrayList<Card> hand = new ArrayList<Card>();
-		for(int i=0;i<numCards;i++){
+		for (int i = 0; i < numCards; i++) {
 			hand.add(this.deck.get(i));
 			this.deck.remove(i);
 		}
 		return hand;
 	}
-	
-	public Integer getDeckSize(){
+
+	public Integer getDeckSize() {
 		return this.deck.size();
 	}
-	
-	public Integer getTotalDeckSize(){
+
+	public Integer getTotalDeckSize() {
 		Integer len = 0;
-		if(this.typeDeck==Constants.SPA_TYPE){
-			len=Constants.SPA_DECKLENGTH;
+		if (this.typeDeck == Constants.SPA_TYPE) {
+			len = Constants.SPA_DECKLENGTH;
 		}
 		return len;
+	}
+	
+	public Card getCardById(Integer idCard){
+		Card card = null;
+		try {
+			card = this.originalDeck.get(idCard);
+		} catch (IndexOutOfBoundsException e) {
+			card = null;
+		}
+		return card;
 	}
 
 	public Integer getNumPlayers() {
@@ -88,5 +100,9 @@ public class Deck {
 
 	public Integer getTypeDeck() {
 		return typeDeck;
+	}
+
+	public ArrayList<Card> getOriginalDeck() {
+		return originalDeck;
 	}
 }
