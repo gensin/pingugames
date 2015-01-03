@@ -5,10 +5,13 @@ import org.pingus.model.Room;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class RoomRepository {
 
-    private static final Map<String, Room> rooms = new HashMap<>(5);
+
+    private static final Map<String, Room> rooms = new TreeMap<>();
+
 
     static {
         rooms.put("Sala 1", new Room("Sala 1", 4));
