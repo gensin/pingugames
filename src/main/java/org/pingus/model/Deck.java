@@ -1,10 +1,10 @@
-package main.java.org.pingus.model;
+package org.pingus.model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
-import main.java.org.pingus.utils.Constants;
+import org.pingus.utils.Constants;
 
 public class Deck {
 

@@ -1,4 +1,4 @@
-package main.java.org.pingus.utils;
+package org.pingus.utils;
 
 public class Constants {
 

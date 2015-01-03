@@ -1,4 +1,4 @@
-package main.java.org.pingus.model;
+package org.pingus.model;
 
 public class Card {
 

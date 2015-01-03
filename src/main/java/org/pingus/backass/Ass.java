@@ -1,4 +1,4 @@
-package main.java.org.pingus.backass;
+package org.pingus.backass;
 
 public class Ass {
 
