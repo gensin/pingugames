@@ -6,6 +6,7 @@ public class Card {
 
 	private int cardId;
 	private int cardNumber;
+	private int playedNumber;
 	private int isJoker;
 	private String cardClub;
 	private String cardKind;
@@ -13,6 +14,7 @@ public class Card {
 	public Card(int cardId, int cardNumber, String cardClub, String cardKind) {
 		this.cardId = cardId;
 		this.cardNumber = cardNumber;
+		this.playedNumber = cardNumber;
 		this.cardClub = cardClub;
 		this.cardKind = cardKind;
 		this.isJoker = Constants.NO_JOKER;
@@ -22,6 +24,7 @@ public class Card {
 			int isJoker) {
 		this.cardId = cardId;
 		this.cardNumber = cardNumber;
+		this.playedNumber = cardNumber;
 		this.cardClub = cardClub;
 		this.cardKind = cardKind;
 		this.isJoker = isJoker;
@@ -31,7 +34,7 @@ public class Card {
 		if (this.isJoker == Constants.NO_JOKER) {
 			this.isJoker = Constants.JOKER;
 		}
-		this.cardNumber = cardNumber;
+		this.playedNumber = cardNumber;
 		this.cardClub = cardClub;
 		this.cardKind = cardKind;
 		return this.cardId;
@@ -55,6 +58,10 @@ public class Card {
 
 	public String getCardKind() {
 		return cardKind;
+	}
+
+	public int getPlayedNumber() {
+		return playedNumber;
 	}
 
 }
