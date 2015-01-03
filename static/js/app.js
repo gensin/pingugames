@@ -1,6 +1,6 @@
 var pingusgames = angular.module('pingusgames',['ngRoute']);
 
-pingusgames.config(['$routeProvider', function($routeProvider) {
+pingusgames.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 	$routeProvider.
 		when('/pingusgames', {
 			templateUrl: '../pages/main.html',
@@ -13,6 +13,10 @@ pingusgames.config(['$routeProvider', function($routeProvider) {
 		when('/register', {
 			templateUrl: '../pages/register.html',
 			controller: 'registerController'
+		}).
+		when('/sala', {
+			templateUrl: '../pages/sala.html',
+			controller: 'salaController'
 		}).
 		otherwise({
 			redirectTo: '/pingusgames'

@@ -78,6 +78,10 @@
 	color:#000000;
 }
 
+.sala{
+	border: solid 1px;
+}
+
 /*  PIE INDEX */
 .pie{
 	width: 100%;
