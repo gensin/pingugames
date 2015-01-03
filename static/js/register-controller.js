@@ -1,7 +1,7 @@
 function registerController($scope,$http) {
 	
-	$scope.login = function() {
-		$http.post('/register', {msg:''}).
+	$scope.register = function() {
+		$http.post('/register', {mail:'mail',name:'name'}).
 		success(function(data, status, headers, config) {
 			alert(data);
 		}).

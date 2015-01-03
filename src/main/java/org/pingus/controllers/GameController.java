@@ -9,10 +9,12 @@ import org.pingus.backass.AssGame;
 import org.pingus.backass.PlayerRegistrant;
 import org.pingus.backass.repository.RoomRepository;
 import org.pingus.controllers.dto.PlayerAndRoomDTO;
+import org.pingus.dao.UserDao;
 import org.pingus.model.GameStatus;
 import org.pingus.model.Player;
 import org.pingus.model.Room;
 import org.pingus.model.RoomInformation;
+import org.pingus.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,6 +24,9 @@ public class GameController {
 	private final RoomRepository roomRepository;
 	private final PlayerRegistrant playerRegistrant;
 	private final ObjectMapper objectMapper = new ObjectMapper();
+	
+	@Autowired
+	private UserDao userDao;
 
 	@Autowired
 	public GameController(RoomRepository roomRepository, PlayerRegistrant playerRegistrant) {
@@ -80,5 +85,18 @@ public class GameController {
 		}
 
 		return statuses;
+	}
+
+	@RequestMapping("/register")
+	public String register(@RequestBody User user) {
+		System.out.println("Name: " + user.getName());
+		System.out.println("Email: " + user.getEmail());
+		try {
+			userDao.save(user);
+		}
+		catch (Exception ex) {
+			return "Error creating the user: " + ex.toString();
+		}
+		return "User succesfully created!";
 	}
 }
