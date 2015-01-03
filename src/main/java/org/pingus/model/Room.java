@@ -6,10 +6,12 @@ import java.util.Set;
 
 public class Room {
 
+    private final String roomId;
     private final int capacity;
     private final Set<String> registeredPlayers;
 
-    public Room(int capacity) {
+    public Room(String roomId, int capacity) {
+        this.roomId = roomId;
         this.capacity = capacity;
         this.registeredPlayers = new HashSet<>();
     }
@@ -29,6 +31,7 @@ public class Room {
     }
 
     public void unregisterPlayer(String playerId) {
+        //TODO notify front end to update numbers of this room
         registeredPlayers.remove(playerId);
     }
 
@@ -42,5 +45,9 @@ public class Room {
 
     public boolean hasPlayer(String playerId) {
         return registeredPlayers.contains(playerId);
+    }
+
+    public RoomInformation getStatus() {
+        return new RoomInformation(capacity, registeredPlayers.size(), roomId);
     }
 }

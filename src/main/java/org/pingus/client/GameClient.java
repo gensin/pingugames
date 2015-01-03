@@ -1,12 +1,15 @@
 package org.pingus.client;
 
 import org.pingus.model.GameStatus;
+import org.pingus.model.RoomInformation;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class GameClient {
 
     public static final String BASE_URL = "http://localhost:8080";
-    public static final String JOIN_GAME_URL = "/join?playerId={}&roomId={}";
     RestTemplate restTemplate = new RestTemplate();
 
     public String invokame() {
@@ -21,5 +24,22 @@ public class GameClient {
 
         GameStatus gameStatus = restTemplate.getForObject(url.toString(), GameStatus.class);
         return gameStatus;
+    }
+
+    public RoomInformation getRoomStatus(String roomId) {
+        StringBuilder url = new StringBuilder(BASE_URL);
+        url.append("/getRoomStatus?roomId=").append(roomId);
+
+        RoomInformation info = restTemplate.getForObject(url.toString(), RoomInformation.class);
+        return info;
+    }
+
+    public ArrayList<RoomInformation> getRoomStatuses() {
+        StringBuilder url = new StringBuilder(BASE_URL);
+        url.append("/getRoomStatuses");
+
+        ArrayList<RoomInformation> info = (ArrayList<RoomInformation>) restTemplate.getForObject(url.toString(), ArrayList.class);
+        return info;
+
     }
 }
