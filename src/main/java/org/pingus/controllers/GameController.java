@@ -10,9 +10,7 @@ import org.pingus.model.Player;
 import org.pingus.model.Room;
 import org.pingus.model.RoomInformation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GameController {
@@ -35,10 +33,10 @@ public class GameController {
 		return "Dame cartas!";
 	}
 
-	@RequestMapping("/join")
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public GameStatus joinGame(
-			@RequestParam(value = "playerId") String playerId,
-			@RequestParam(value = "roomId") String roomId) {
+			@RequestBody String playerId,
+			@RequestBody String roomId) {
 
 		return playerRegistrant.registerPlayerToRoom(playerId, roomId);
 	}
