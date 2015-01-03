@@ -21,6 +21,11 @@
 					<div class="col-lg-4"></div>
 				</div>
 			</div>
+			
+			<div class="col-lg-12 cuerpo" ng-controller="baseController">
+				<button class="btn-lg" ng-click="myFunction()"></button>
+				{{algo}}
+ 			</div>
 		
 			<div class="row">
 				<div class="col-lg-12 cuerpo">						
@@ -80,24 +85,3 @@
 
 </body>
 </html>
-
-<script>
-
-function myFunction2() {
-	$('.cartaPropia').removeClass('cartaPropia');
-	$('.cartaPropia').addClass('cartaPropiaSeleccionada');
-}
-
-function myFunction() {
-
-	$http.post('localhost:8080', {msg:''}).
-	success(function(data, status, headers, config) {
-		alert(data);
-	}).
-	error(function(data, status, headers, config) {
-		alert("Error");
-	});
-	
-}
-
-</script>
