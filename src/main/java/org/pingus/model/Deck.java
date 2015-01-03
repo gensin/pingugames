@@ -147,10 +147,10 @@ public class Deck {
 		return len;
 	}
 
-	public Card getCardById(int idCard) {
+	public Card getCardById(int cardId) {
 		Card card = null;
 		try {
-			card = this.originalDeck.get(idCard);
+			card = this.originalDeck.get(cardId);
 		} catch (Exception e) {
 			card = null;
 		}
