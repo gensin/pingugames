@@ -65,4 +65,22 @@ public class Player {
 		return hand;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		System.out.println("comparando");
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Player player = (Player) o;
+
+		System.out.println("devolviendo " + (ID != player.ID));
+		if (ID != player.ID) return false;
+
+		return true;
+	}
+
+	@Override
+	public int hashCode() {
+		return ID;
+	}
 }

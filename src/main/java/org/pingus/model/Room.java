@@ -1,6 +1,8 @@
 package org.pingus.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.pingus.backass.AssGame;
 import org.pingus.utils.Constants;
@@ -9,13 +11,13 @@ public class Room {
 
 	private final String roomId;
 	private final int capacity;
-	private final ArrayList<Player> registeredPlayers;
+	private final Set<Player> registeredPlayers;
 	private AssGame roomGame = null;
 
 	public Room(String roomId, int capacity) {
 		this.roomId = roomId;
 		this.capacity = capacity;
-		this.registeredPlayers = new ArrayList<Player>();
+		this.registeredPlayers = new HashSet<>();
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class Room {
 		return roomId;
 	}
 
-	public ArrayList<Player> getRegisteredPlayers() {
+	public Set<Player> getRegisteredPlayers() {
 		return registeredPlayers;
 	}
 
