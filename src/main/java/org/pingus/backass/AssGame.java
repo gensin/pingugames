@@ -19,7 +19,8 @@ public class AssGame {
 	private final Player[] players;
 	private final Deck deck;
 	private int currentPlayer;
-	private Card lastCardPlayed = null;
+    private int lastPlayer;
+	private ArrayList<Card> lastCardPlayed = null;
 	private final int PLAYER_NOT_FOUND = -1;
 	private boolean[] remainingPlayers;
 	private int[] arrayOfPositions;
@@ -81,23 +82,24 @@ public class AssGame {
     //TODO add when card is a joker
 	public Player playCard(int cardId, int playerID) {
 		int playerPosition = getPlayerPositionByID(playerID);
-		Player player = players[playerPosition];
-		Card playedCard = deck.getCardById(cardId);
+
+		//Card playedCard = deck.getCardById(cardId);
 		// Card playedCard = deck.getCardByID(cardID);
 		// Wrong card
-		if (deck.getCardById(playedCard.getCardId()) == null) {
+		/*if (playedCard == null) {
 			return null;
-		}
+		}*/
 		// Wrong PlayerID
 		if (playerPosition == PLAYER_NOT_FOUND) {
 			return null;
-
 		}
+        Player player = players[playerPosition];
 		// Player does not have card
-		if (!player.hasCard(playedCard)) {
+		if (!player.hasCard(cardId)) {
 			return null;
 		}
 		// Card Can be Played
+        Card playedCard = deck.getCardById(cardId);
 		if (!correctPlay(playedCard)) {
 			return null;
 		}
@@ -108,20 +110,83 @@ public class AssGame {
 				gameFinished();
 			}
 		}
-		if (playedCard.getPlayedNumber() == lastCardPlayed.getPlayedNumber()) {
+        lastPlayer = currentPlayer;
+        if(lastCardPlayed == null){
+            currentPlayer = nextPlayer(1);
+        }else if (playedCard.getPlayedNumber() == lastCardPlayed.get(0).getPlayedNumber()) {
 			currentPlayer = nextPlayer(2);
 		} else {
 			currentPlayer = nextPlayer(1);
 		}
-		lastCardPlayed = playedCard;
+        ArrayList<Card> auxiliaryCard = new ArrayList<>(1);
+        auxiliaryCard.set(0, playedCard);
+		lastCardPlayed = auxiliaryCard;
 		return player;
 
 	}
-    public Player pass(int playerID){
+
+    public Player playCards(int[] cardIds, int playerID){
+        int playerPosition = getPlayerPositionByID(playerID);
+
+        //Card playedCard = deck.getCardById(cardId);
+        // Card playedCard = deck.getCardByID(cardID);
+        // Wrong card
+        //if (deck.getCardById(playedCard.getCardId()) == null) {
+            //return null;
+        //}
+        // Wrong PlayerID
+        if (playerPosition == PLAYER_NOT_FOUND) {
+            return null;
+        }
+        Player player = players[playerPosition];
+        // Player does not have card
+        if (!player.hasCards(cardIds)) {
+            return null;
+        }
+        // Card Can be Played
+        ArrayList<Card> playedCards = new ArrayList<Card>();
+        for( int i = 0; i<cardIds.length; i++){
+            playedCards.add(deck.getCardById(cardIds[i]));
+        }
+        if (!checkMultipleCards(playedCards)){
+            return null;
+        }
+
+        if (!correctPlay(playedCards)) {
+            return null;
+        }
+        player.playedCard(cardIds);
+        if (player.getHand().size() == 0) {
+            remainingPlayers[playerPosition] = false;
+            if (numberOfRemainingPlayers() == 1) {
+                gameFinished();
+            }
+        }
+        lastPlayer = currentPlayer;
+        if(lastCardPlayed == null){
+            currentPlayer = nextPlayer(1);
+        }
+        if (playedCards.get(0).getPlayedNumber() == lastCardPlayed.get(0).getPlayedNumber()) {
+            currentPlayer = nextPlayer(2);
+        } else {
+            currentPlayer = nextPlayer(1);
+        }
+        ArrayList<Card> auxiliaryCards = new ArrayList<>(playedCards.size());
+        //TODO adapt to joker
+        auxiliaryCards.set(0,playedCards.get(0));
+        return player;
+
+    }
+    //TODO modify return to mean that the player starts again
+    public boolean pass(int playerID){
         int playerPosition = getPlayerPositionByID(playerID);
         Player player = players[playerPosition];
         currentPlayer = nextPlayer(1);
-        return player;
+        if (currentPlayer == lastPlayer){
+            lastCardPlayed = null;
+            return false;
+        }
+        return true;
 
 
     }
@@ -131,10 +196,35 @@ public class AssGame {
 	}
 
 	private boolean correctPlay(Card playedCard) {
-		return firstCardIsBiggerOrEqual(playedCard.getPlayedNumber(),
-				lastCardPlayed.getPlayedNumber());
-
+        if (lastCardPlayed == null){
+            return true;
+        }
+        else{
+		    return firstCardIsBiggerOrEqual(playedCard.getPlayedNumber(),lastCardPlayed.get(0).getPlayedNumber());
+        }
 	}
+    //TODO accept jokers
+    private boolean correctPlay(ArrayList<Card> playedCards){
+        if(lastCardPlayed == null ){
+            return true;
+        }
+        else if( playedCards.size() != lastCardPlayed.size())
+        {return false;}
+        else{
+            return firstCardIsBiggerOrEqual(playedCards.get(0).getPlayedNumber(),lastCardPlayed.get(0).getPlayedNumber());
+        }
+    }
+    //TODO accept jokers
+    private boolean checkMultipleCards(ArrayList<Card> playedCards){
+        int value = playedCards.get(0).getCardNumber();
+        for( int i = 1; i< playedCards.size(); i++){
+            if( playedCards.get(i).getCardNumber() != value){
+                return false;
+
+            }
+        }
+        return true;
+    }
 
 	private boolean firstCardIsBiggerOrEqual(int firstCardNumber,
 			int secondCardNumber) {
