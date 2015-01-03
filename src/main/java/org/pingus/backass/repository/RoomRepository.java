@@ -11,11 +11,11 @@ public class RoomRepository {
     private static final Map<String, Room> rooms = new HashMap<>(5);
 
     static {
-        rooms.put("roomId1", new Room("roomId1", 4));
-        rooms.put("roomId2", new Room("roomId2", 4));
-        rooms.put("roomId3", new Room("roomId3", 4));
-        rooms.put("roomId4", new Room("roomId4", 4));
-        rooms.put("roomId5", new Room("roomId5", 4));
+        rooms.put("Sala 1", new Room("Sala 1", 4));
+        rooms.put("Sala 2", new Room("Sala 2", 4));
+        rooms.put("Sala 3", new Room("Sala 3", 4));
+        rooms.put("Sala 4", new Room("Sala 4", 4));
+        rooms.put("Sala 5", new Room("Sala 5", 4));
     }
 
     public Collection<Room> getRooms() {
