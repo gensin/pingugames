@@ -1,20 +1,9 @@
 package org.pingus.controllers;
 
-import java.io.IOException;
-import java.util.Collection;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.pingus.backass.AssGame;
-import org.pingus.backass.PlayerRegistrant;
 import org.pingus.backass.repository.RoomRepository;
-import org.pingus.controllers.dto.PlayerAndRoomDTO;
-import org.pingus.dao.UserDao;
-import org.pingus.model.GameStatus;
 import org.pingus.model.Player;
-import org.pingus.model.Room;
-import org.pingus.model.RoomInformation;
-import org.pingus.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,16 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class GameController {
 
 	private final RoomRepository roomRepository;
-	private final PlayerRegistrant playerRegistrant;
-	private final ObjectMapper objectMapper = new ObjectMapper();
-	
-	@Autowired
-	private UserDao userDao;
 
 	@Autowired
-	public GameController(RoomRepository roomRepository, PlayerRegistrant playerRegistrant) {
+	public GameController(RoomRepository roomRepository) {
 		this.roomRepository = roomRepository;
-		this.playerRegistrant = playerRegistrant;
 	}
 
 	@RequestMapping("/")
@@ -43,12 +26,7 @@ public class GameController {
 		return "Dame cartas!";
 	}
 
-	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public GameStatus joinGame(@RequestBody String playerAndRoomBody) throws IOException {
-		PlayerAndRoomDTO playerAndRoomDTO = objectMapper.readValue(playerAndRoomBody, PlayerAndRoomDTO.class);
 
-		return playerRegistrant.registerPlayerToRoom(playerAndRoomDTO.getPlayerId(), playerAndRoomDTO.getRoomId());
-	}
 
 	@RequestMapping("/playCardAss")
 	public Player playCardAss(
@@ -65,38 +43,7 @@ public class GameController {
 		}
 	}
 
-	// puede que no lo necesitemos
-	@RequestMapping("/getRoomStatus")
-	public RoomInformation getRoomStatus(
-			@RequestParam(value = "roomId") String roomId) {
-		// TODO SAFEGUARD against null
-		return roomRepository.getRoom(roomId).getStatus();
-	}
 
-	@RequestMapping("/getRoomStatuses")
-	public RoomInformation[] getRoomStatuses() {
-		Collection<Room> rooms = roomRepository.getRooms();
 
-		RoomInformation[] statuses = new RoomInformation[rooms.size()];
 
-		int index = 0;
-		for (Room room : rooms) {
-			statuses[index++] = room.getStatus();
-		}
-
-		return statuses;
-	}
-
-	@RequestMapping("/register")
-	public String register(@RequestBody User user) {
-		System.out.println("Name: " + user.getName());
-		System.out.println("Email: " + user.getEmail());
-		try {
-			userDao.save(user);
-		}
-		catch (Exception ex) {
-			return "Error creating the user: " + ex.toString();
-		}
-		return "User succesfully created!";
-	}
 }
