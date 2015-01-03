@@ -19,7 +19,7 @@ public class Constants {
 	public static int SPA_TYPE_JOKERS = 2;
 	public static int SPA_NUM_JOKERS = 2;
 
-<<<<<<< HEAD
+
 	public static String ENG_SPADES = "Spades";
 	public static String ENG_DIAMONDS = "Diamonds";
 	public static String ENG_CLUBS = "Clubs";
